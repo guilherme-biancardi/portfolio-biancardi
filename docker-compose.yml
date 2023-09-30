@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  frontend: 
+    image: node:alpine
+    container_name: portfolio.biancardi
+    ports:
+      - 8443:8443
+    working_dir: /var/www/portfolio.biancardi
+    volumes:
+      - .:/var/www/portfolio.biancardi
+    networks:
+      - portfolio_network
+    tty: true
+    command: sh ./run.sh
+
+networks:
+  portfolio_network:
+    driver: bridge
