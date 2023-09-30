@@ -5,7 +5,7 @@ services:
     image: node:alpine
     container_name: portfolio.biancardi
     ports:
-      - 8443:8443
+      - 4000:4000
     working_dir: /var/www/portfolio.biancardi
     volumes:
       - .:/var/www/portfolio.biancardi

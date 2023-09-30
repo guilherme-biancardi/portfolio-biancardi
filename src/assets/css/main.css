@@ -1,0 +1,57 @@
+@font-face {
+  font-family: 'cascadia';
+  src: url('../font/CascadiaCodePL.woff2');
+  font-display: swap;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'cascadia', sans-serif;
+}
+
+:root {
+  --syntax-background: #282c34;
+  --syntax-gutter: #1d2025;
+  --syntax-gutter-dark: #181b1f;
+  --default-text: #abb2bf;
+  --default-text-disabled: #848992;
+  --syntax-guide: #cccccc;
+  --purple: #c678dd;
+  --yellow: #e5c07b;
+  --green: #98c379;
+  --cyan: #56b6c2;
+  --rose: #e06c75;
+  --orange: #d19a66;
+}
+
+body {
+  background-color: var(--syntax-background);
+  color: var(--default-text);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
