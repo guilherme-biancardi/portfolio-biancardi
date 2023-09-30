@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @font-face {
   font-family: 'cascadia';
   src: url('../font/CascadiaCodePL.woff2');
@@ -8,7 +10,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'cascadia', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 :root {
@@ -24,6 +26,8 @@
   --cyan: #56b6c2;
   --rose: #e06c75;
   --orange: #d19a66;
+
+  --font-code: 'Cascadia', sans-serif;
 }
 
 body {

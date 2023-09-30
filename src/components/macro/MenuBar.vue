@@ -1,7 +1,9 @@
 <template>
   <nav class="menu-content">
     <ul class="menu-list">
-      <PhotoContent></PhotoContent>
+      <li>
+        <img :src="appStore.getPhoto" class="menu-photo" />
+      </li>
       <li
         v-for="(item, index) in state.menuItems"
         :key="index"
@@ -43,12 +45,14 @@
 
 <script setup lang="ts">
 import type { Icon } from '@/ts/types';
-import { mdiAccount, mdiCog, mdiHome, mdiTools, mdiWeb } from '@mdi/js';
+import { mdiAccount, mdiCog, mdiTools } from '@mdi/js';
 import { computed, reactive } from 'vue';
 import type { RouterLinkProps } from 'vue-router';
 import IconComponent from '../utils/IconComponent.vue';
 import SettingsWindow from './SettingsWindow.vue';
-import PhotoContent from './PhotoContent.vue';
+import { useAppStore } from '@/stores/AppStore';
+
+const appStore = useAppStore();
 
 interface MenuItem {
   to?: RouterLinkProps['to'];
@@ -69,12 +73,6 @@ const itemsDisabled = computed(() => state.settingsVisibility);
 const state = reactive<State>({
   menuItems: [
     {
-      title: 'Inicio',
-      to: { name: 'welcome' },
-      icon: { path: mdiHome, size: 36 },
-      mouseEnter: false
-    },
-    {
       title: 'Sobre Mim',
       to: { name: 'aboutMe' },
       icon: { path: mdiAccount, size: 36 },
@@ -84,12 +82,6 @@ const state = reactive<State>({
       title: 'Projetos',
       to: { name: 'project' },
       icon: { path: mdiTools, size: 32 },
-      mouseEnter: false
-    },
-    {
-      title: 'Minhas Redes',
-      to: { name: 'network' },
-      icon: { path: mdiWeb, size: 36 },
       mouseEnter: false
     },
     {
@@ -137,6 +129,13 @@ const state = reactive<State>({
 .disabled-item * {
   color: var(--default-text-disabled);
   cursor: no-drop;
+}
+
+.menu-photo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  margin-bottom: -16px;
 }
 
 .menu-tooltip {
