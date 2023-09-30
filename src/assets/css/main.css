@@ -35,6 +35,11 @@ body {
   color: var(--default-text);
 }
 
+#app {
+  width: 100%;
+  height: 100vh;
+}
+
 ul {
   list-style: none;
 }

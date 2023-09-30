@@ -2,7 +2,7 @@
   <nav class="menu-content">
     <ul class="menu-list">
       <li>
-        <img :src="appStore.getPhoto" class="menu-photo" />
+        <img :src="appStore.getPhoto?.small" class="menu-photo" />
       </li>
       <li
         v-for="(item, index) in state.menuItems"

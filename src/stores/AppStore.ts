@@ -2,20 +2,25 @@ import { defineStore } from 'pinia';
 import { computed, reactive } from 'vue';
 
 type Store = {
-  photo: string | undefined;
+  photos:
+    | {
+        small: string | undefined;
+        large: string | undefined;
+      }
+    | undefined;
 };
 
 export const useAppStore = defineStore('app', () => {
   const store = reactive<Store>({
-    photo: undefined
+    photos: undefined
   });
 
-  const getPhoto = computed(() => store.photo);
+  const getPhoto = computed(() => store.photos);
 
-  const setPhoto = (photo: string) => (store.photo = photo);
+  const setPhotos = (photos: Store['photos']) => (store.photos = photos);
 
   return {
-    setPhoto,
+    setPhotos,
     getPhoto
   };
 });

@@ -8,5 +8,4 @@
 import MainContent from './components/macro/MainContent.vue';
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
