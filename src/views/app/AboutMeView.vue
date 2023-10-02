@@ -3,9 +3,11 @@
     <article class="about-content">
       <div>
         <div class="about-text">
-          <h1>Prazer, <span :style="{ backgroundColor: nameColor }">Guilherme Biancardi</span></h1>
+          <h1>
+            Prazer, <span :style="{ backgroundColor: nameColor }">{{ devName }}</span>
+          </h1>
           <p>
-            Meu nome é Guilherme Biancardi, trabalho como
+            Meu nome é {{ devName }}, trabalho como
             <span class="text-highlight">FullStack Developer</span> e
             <span class="text-highlight">UI Designer</span>, sendo responsavél pela elaboração de
             interfaces e atuando na lógica do projeto, focando em performance e experiência do
@@ -16,6 +18,12 @@
             sou apaixonado por tecnologia e busco sempre aprender e aprimorar minhas habilidades.
           </p>
         </div>
+
+        <hr />
+
+        <CopyEmail></CopyEmail>
+
+        <hr />
 
         <ul class="about-medias">
           <li v-for="(media, index) in state.socialMedias" :key="index">
@@ -36,13 +44,24 @@
 <script setup lang="ts">
 import AppContent from '@/components/contents/AppContent.vue';
 import IconComponent from '@/components/utils/IconComponent.vue';
+import CopyEmail from '@/components/pages/aboutMe/CopyEmail.vue';
 import { useAppStore } from '@/stores/AppStore';
 import type { Icon } from '@/ts/types';
-import { mdiEmailOutline, mdiGithub, mdiInstagram, mdiLinkedin, mdiWhatsapp } from '@mdi/js';
+import { mdiGithub, mdiInstagram, mdiLinkedin, mdiWhatsapp } from '@mdi/js';
 import { useCssVar } from '@vueuse/core';
 import { computed, reactive } from 'vue';
 
 const appStore = useAppStore();
+
+const nameColor = computed(() => {
+  const color = useCssVar('--green');
+
+  return `${color.value}99`;
+});
+
+const dev = computed(() => appStore.getDevInformation);
+const devName = computed(() => dev.value.name);
+const devMedias = computed(() => dev.value.medias);
 
 interface SocialMedia {
   icon: Icon;
@@ -57,45 +76,46 @@ const state = reactive<State>({
   socialMedias: [
     {
       icon: { path: mdiLinkedin },
-      link: ''
+      link: devMedias.value.linkedin
     },
     {
       icon: { path: mdiGithub },
-      link: ''
+      link: devMedias.value.github
     },
     {
       icon: { path: mdiInstagram },
-      link: ''
+      link: devMedias.value.instagram
     },
     {
       icon: { path: mdiWhatsapp },
-      link: ''
-    },
-    {
-      icon: { path: mdiEmailOutline },
-      link: ''
+      link: devMedias.value.whatsapp
     }
   ]
-});
-
-const nameColor = computed(() => {
-  const color = useCssVar('--green');
-
-  return `${color.value}99`;
 });
 </script>
 
 <style scoped>
 .about-content {
+  width: 100%;
   display: grid;
   place-items: center;
-  grid-template-columns: 56% 42%;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 12px;
 }
 
 .about-content > div {
   display: flex;
   flex-direction: column;
   row-gap: 36px;
+}
+
+.about-content hr {
+  width: 70%;
+  max-width: 420px;
+  align-self: center;
+  border: 1px solid var(--syntax-gutter-light);
+  margin-top: -4px;
+  margin-bottom: -4px;
 }
 
 .about-text {

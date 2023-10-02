@@ -15,6 +15,7 @@
 
 :root {
   --syntax-background: #282c34;
+  --syntax-gutter-light: #30353e;
   --syntax-gutter: #1d2025;
   --syntax-gutter-dark: #181b1f;
   --default-text: #abb2bf;
