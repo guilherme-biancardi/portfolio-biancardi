@@ -1,10 +1,14 @@
 <template>
-  <section class="app-section">
+  <section class="app-section" :style="{ gap: `${gap}px` }">
     <slot></slot>
   </section>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+withDefaults(defineProps<{ gap?: number }>(), {
+  gap: 16
+});
+</script>
 
 <style scoped>
 .app-section {
@@ -14,6 +18,5 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  row-gap: 16px;
 }
 </style>
