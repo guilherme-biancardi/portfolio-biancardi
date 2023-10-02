@@ -11,12 +11,12 @@ import MenuBar from './MenuBar.vue';
 
 const appStore = useAppStore();
 
-const resolvedPhotos = Promise.allSettled([
+const resolvedPhotos = await Promise.allSettled([
   import('@/assets/small-photo.webp'),
   import('@/assets/large-photo.jpeg')
 ]);
 
-const [small, large] = (await resolvedPhotos).map((photo) => {
+const [small, large] = resolvedPhotos.map((photo) => {
   if (photo.status === 'fulfilled') return photo.value.default;
 });
 
