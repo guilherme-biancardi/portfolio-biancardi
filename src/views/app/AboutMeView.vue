@@ -97,13 +97,14 @@ const state = reactive<State>({
 <style scoped>
 .about-content {
   width: 100%;
+  height: 100%;
   display: grid;
   place-items: center;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 12px;
+  grid-template-columns: 1.1fr 0.9fr;
 }
 
 .about-content > div {
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   row-gap: 36px;
@@ -128,7 +129,8 @@ const state = reactive<State>({
 }
 
 .about-text h1 {
-  font-size: 2.5em;
+  width: 100%;
+  font-size: 2em;
   text-align: center;
   margin-bottom: 16px;
 }
@@ -137,6 +139,7 @@ const state = reactive<State>({
   padding: 0 12px;
   color: #fff;
   border-radius: 2px;
+  white-space: nowrap;
 }
 
 .about-text p {
@@ -169,10 +172,13 @@ const state = reactive<State>({
 }
 
 .about-polaroid {
+  width: 80%;
+  max-width: 500px;
   position: relative;
   padding: 28px;
-  padding-bottom: 66px;
+  padding-bottom: 76px;
   background-color: #fff;
+  justify-self: center;
   transform: rotate(-4deg);
 }
 
@@ -202,11 +208,18 @@ const state = reactive<State>({
 
 .about-polaroid img {
   max-width: 100%;
-  max-height: 450px;
+  max-height: 100%;
 }
 
 .text-highlight {
   color: var(--yellow);
   font-weight: 500;
+}
+
+@media screen and (max-width: 1024px) {
+  .about-content{
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
 }
 </style>

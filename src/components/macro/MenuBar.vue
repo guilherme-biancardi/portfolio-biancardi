@@ -1,8 +1,8 @@
 <template>
   <nav class="menu-content">
     <ul class="menu-list">
-      <li>
-        <img :src="appStore.getPhoto?.small" class="menu-photo" />
+      <li class="menu-photo">
+        <img :src="appStore.getPhoto?.small"/>
       </li>
       <li
         v-for="(item, index) in state.menuItems"
@@ -98,6 +98,8 @@ const state = reactive<State>({
 <style scoped>
 .menu-content {
   padding: 16px 28px;
+  z-index: 1;
+  height: 100%;
 }
 
 .menu-list {
@@ -108,7 +110,7 @@ const state = reactive<State>({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 40px;
+  gap: 40px;
 }
 
 .menu-item {
@@ -131,7 +133,7 @@ const state = reactive<State>({
   cursor: no-drop;
 }
 
-.menu-photo {
+.menu-photo img{
   width: 52px;
   height: 52px;
   border-radius: 50%;
@@ -178,5 +180,35 @@ const state = reactive<State>({
 /* hover */
 .menu-item:not(.disabled-item) *:hover {
   color: var(--syntax-guide);
+}
+
+@media screen and (max-width: 1024px) {
+  .menu-content{
+    width: 100%;
+    height: var(--menu-size);
+    position: fixed;
+    bottom: 0;
+    background-color: var(--syntax-gutter);
+    padding: 14px 24px;
+  }
+
+  .menu-list{
+    flex-direction: row;
+  }
+
+  .menu-photo{
+    height: 100%;
+  }
+
+  .menu-photo img{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+  }
+
+  .last-item{
+    margin-top: 0;
+    margin-left: auto;
+  }
 }
 </style>
