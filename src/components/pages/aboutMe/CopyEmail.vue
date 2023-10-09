@@ -45,6 +45,8 @@ const copyEmailToClipboard = async () => {
 <style scoped>
 .copy-content {
   width: 100%;
+  max-width: 550px;
+  align-self: center;
   height: 60px;
   display: flex;
   align-items: center;
